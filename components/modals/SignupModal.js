@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "@mui/material/Modal";
 import {
   closeSignupModal,
@@ -8,17 +8,65 @@ import {
 import TwitterIcon from "@material-ui/icons/Twitter";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
-
-
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "@/firebase";
+import { current } from "@reduxjs/toolkit";
+import { setUser } from "@/redux/userSlice";
+import { useRouter } from "next/router";
 
 export default function SignupModal() {
   const isOpen = useSelector((state) => state.modals.signupModalOpen);
   const dispatch = useDispatch();
 
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("initialState");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  async function handleSignUp() {
+    const userCredentials = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: `./assets/profilePictures/pfp${Math.ceil(
+        Math.random() * 6
+      )}.png`,
+    });
+    router.reload();
+  }
+
   const handleLoginButtonClick = () => {
     dispatch(closeSignupModal()); // Close the login modal
     dispatch(openLoginModal()); // Open the signup modal
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (!currentUser) return;
+      console.log(currentUser);
+
+      dispatch(
+        setUser({
+          username: currentUser.email.split("@")[0],
+          name: currentUser.displayName,
+          email: currentUser.email,
+          uid: currentUser.uid,
+          photoUrl: currentUser.photoURL,
+        })
+      );
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <>
@@ -45,18 +93,24 @@ export default function SignupModal() {
               placeholder="Full Name"
               className="bg-gray-200 h-10 mt-8  w-[50%] rounded-md bg-transparent border border-gray-300 p-6 "
               type={"text"}
+              onChange={(e) => setName(e.target.value)}
             />
             <input
               placeholder="Email"
               className="bg-gray-200 h-10 mt-8 w-[50%] rounded-md bg-transparent border border-gray-300 p-6"
               type={"email"}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               placeholder="Password"
               className="bg-gray-200 h-10 mt-8  w-[50%] rounded-md bg-transparent border border-gray-300 p-6"
               type={"password"}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="bg-black text-white w-[50%] font-bold text-lg p-2 rounded-3xl mt-8">
+            <button
+              className="bg-black text-white w-[50%] font-bold text-lg p-2 rounded-3xl mt-8
+            "
+              onClick={handleSignUp}>
               Create account
             </button>
             <div className="flex items-center">

@@ -11,8 +11,23 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 import TwitterIcon from "@material-ui/icons/Twitter";
+import { signOut } from "firebase/auth";
+import { auth } from "@/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { signOutUser } from "@/redux/userSlice";
+import { closeLoginModal, closeSignupModal } from "@/redux/modalSlice";
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  async function handleSignOut() {
+    await signOut(auth);
+    dispatch(signOutUser());
+    dispatch(closeSignupModal());
+    dispatch(closeLoginModal());
+  }
+
   return (
     <div className="h-full hidden sm:flex flex-col fixed xl:ml-24">
       <nav className="h-full relative xl:space-y-1.5">
@@ -32,6 +47,21 @@ export default function Sidebar() {
         ">
           Tweet
         </button>
+        <div
+          className="bottom-0 hover:bg-gray-200 hover:bg-opactiy-10 cursor-pointer
+         rounded-full absolute xl:p-3 flex justify-center items-center space-x-3"
+          onClick={handleSignOut}>
+          <img
+            className="rounded-full w-10 h-10 object-cover"
+            src={user.photoUrl || "/assets/elon.png"}
+            alt=""
+          />
+          <div className="hidden xl:inline">
+            <h1 className=" font-bold whitespace-nowrap">{user.name}</h1>
+            <h1 className="text-gray-500">@{user.username}</h1>
+          </div>
+          <DotsHorizontalIcon className="h-5 text-gray-700 hidden xl:inline" />
+        </div>
       </nav>
     </div>
   );

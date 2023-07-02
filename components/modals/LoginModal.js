@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal } from "@mui/material";
 import {
   closeLoginModal,
@@ -8,11 +8,18 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import CloseIcon from "@mui/icons-material/Close";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase";
 
 export default function LoginModal() {
   const isOpen = useSelector((state) => state.modals.loginModalOpen);
   const dispatch = useDispatch();
-  console.log(isOpen);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSignIn() {
+    await signInWithEmailAndPassword(auth, email, password);
+  }
 
   const handleSignupButtonClick = () => {
     dispatch(closeLoginModal()); // Close the login modal
@@ -42,13 +49,17 @@ export default function LoginModal() {
               placeholder="Phone, email or username"
               className="bg-gray-200 h-10 mt-8 rounded-xl w-[50%] bg-transparent border border-gray-300 p-6 "
               type={"text"}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               placeholder="Password"
               className="bg-gray-200 h-10 mt-8 rounded-xl w-[50%] bg-transparent border border-gray-300 p-6"
               type={"text"}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="bg-black text-white w-[50%] font-bold text-lg p-2 rounded-3xl   mt-8">
+            <button
+              onClick={handleSignIn}
+              className="bg-black text-white w-[50%] font-bold text-lg p-2 rounded-3xl   mt-8">
               Next
             </button>
             <button className="border border-gray-300 w-[50%] font-bold text-lg p-2 rounded-3xl mt-8">
