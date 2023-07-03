@@ -12,3 +12,13 @@
 .iconsAnimation {
   @apply hover:bg-[#50b7f5] hover:bg-opacity-10 cursor-pointer rounded-full w-9 h-9 flex items-center justify-center;
 }
+
+.following {
+  background-color: #50b7f5;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bg-blur {
+  backdrop-filter: blur(10px);
+}

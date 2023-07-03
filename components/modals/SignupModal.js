@@ -29,19 +29,37 @@ export default function SignupModal() {
   const router = useRouter();
 
   async function handleSignUp() {
-    const userCredentials = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-    await updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: `./assets/profilePictures/pfp${Math.ceil(
-        Math.random() * 6
-      )}.png`,
-    });
-    router.reload();
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: `./assets/profilePictures/pfp${Math.ceil(
+          Math.random() * 6
+        )}.png`,
+      });
+      router.reload();
+    } catch (error) {
+      // Handle specific error cases and display appropriate alerts
+      switch (error.code) {
+        case "auth/invalid-email":
+          alert("Invalid email address.");
+          break;
+        case "auth/weak-password":
+          alert("The password is too weak. Please choose a stronger password.");
+          break;
+        case "auth/email-already-in-use":
+          alert("The email address is already in use by another account.");
+          break;
+        default:
+          alert("An error occurred. Please try again later.");
+          break;
+      }
+    }
   }
 
   const handleLoginButtonClick = () => {

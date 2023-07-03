@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
     text: data.tweet,
     comments: data.comments || null,
     timestamp: JSON.stringify(data.timestamp.toDate()),
-    //   image: data.image || null
+    image: data.image || null,
   };
 
   return {
@@ -42,10 +42,10 @@ export default function CommentsPage({ tweetData }) {
       ">
           <div
             className="px-3 py-2 text-lg sm:text-xl font-bold
-          border-b border-gray-300 sticky top-0 z-50 flex space-x-2
+          border-b border-gray-300 sticky top-0 z-50 flex space-x-2 items-center
           ">
             <Link href={"/"}>
-              <ArrowLeftIcon className="w-[15px]" />
+              <ArrowLeftIcon className="w-[15px] h-[15px]" />
             </Link>
             <h1>Tweet</h1>
           </div>
@@ -65,6 +65,7 @@ export default function CommentsPage({ tweetData }) {
                   <Moment fromNow>{JSON.parse(tweetData.timestamp)}</Moment>
                 </div>
                 <span className="text-2xl">{tweetData.text}</span>
+                {tweetData.image && <img src={tweetData.image} />}
               </div>
             </div>
           </div>
@@ -85,9 +86,10 @@ export default function CommentsPage({ tweetData }) {
               </div>
             </div>
             <button
-              //   onClick={sendTweet}
-              //   disabled={!text}
-              className="bg-[#50b7f5] text-white rounded-full px-5 py-2.5 disabled:opacity-50   ">
+              disabled={true}
+              // onClick={sendComments}
+              className="bg-[#50b7f5] text-white rounded-full px-5 py-2.5 disabled:opacity-50
+              ">
               Tweet
             </button>
           </div>

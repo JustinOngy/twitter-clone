@@ -16,6 +16,7 @@ import { auth } from "@/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { signOutUser } from "@/redux/userSlice";
 import { closeLoginModal, closeSignupModal } from "@/redux/modalSlice";
+import Link from "next/link";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -34,8 +35,12 @@ export default function Sidebar() {
         <div className="flex justify-center xl:justify-start items-center py-3 xl:p-3">
           <TwitterIcon className=" text-[#50b7f5]" />
         </div>
-        <SidebarLink Icon={HomeIcon} text={"Home"} />
-        <SidebarLink Icon={HashtagIcon} text={"Explore"} />
+        <Link href="/">
+          <SidebarLink Icon={HomeIcon} text={"Home"} />
+        </Link>
+        <Link href="/explore">
+          <SidebarLink Icon={HashtagIcon} text={"Explore"} />
+        </Link>
         <SidebarLink Icon={BellIcon} text={"Notifications"} />
         <SidebarLink Icon={InboxIcon} text={"Messages"} />
         <SidebarLink Icon={BookmarkIcon} text={"Bookmarks"} />
@@ -53,7 +58,7 @@ export default function Sidebar() {
           onClick={handleSignOut}>
           <img
             className="rounded-full w-10 h-10 object-cover"
-            src={user.photoUrl || "/assets/elon.png"}
+            src={user.photoUrl || "/assets/twitter-dpp.png"}
             alt=""
           />
           <div className="hidden xl:inline">

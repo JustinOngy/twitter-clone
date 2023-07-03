@@ -12,7 +12,7 @@ import {
 } from "@heroicons/react/outline";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 export default function CommentModal() {
   const isOpen = useSelector((state) => state.modals.commentModalOpen);

@@ -18,7 +18,22 @@ export default function LoginModal() {
   const [password, setPassword] = useState("");
 
   async function handleSignIn() {
-    await signInWithEmailAndPassword(auth, email, password);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      // Handle specific error cases and display appropriate alerts
+      switch (error.code) {
+        case "auth/user-not-found":
+          alert("User not found. Please check your credentials.");
+          break;
+        case "auth/wrong-password":
+          alert("Invalid password. Please check your credentials.");
+          break;
+        default:
+          alert("An error occurred. Please check email or password.");
+          break;
+      }
+    }
   }
 
   const handleSignupButtonClick = () => {
@@ -54,7 +69,7 @@ export default function LoginModal() {
             <input
               placeholder="Password"
               className="bg-gray-200 h-10 mt-8 rounded-xl w-[50%] bg-transparent border border-gray-300 p-6"
-              type={"text"}
+              type={"password"}
               onChange={(e) => setPassword(e.target.value)}
             />
             <button

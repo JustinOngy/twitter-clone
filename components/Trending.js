@@ -4,6 +4,8 @@ import {
   SearchIcon,
 } from "@heroicons/react/solid";
 import React from "react";
+import FollowButton from "./FollowButton";
+import TrendingItem from "./TrendingItem";
 
 const Trending = () => {
   return (
@@ -17,36 +19,23 @@ const Trending = () => {
       </div>
       <div className="w-[300px] h-[500px] bg-gray-700 bg-opacity-5 rounded-3xl mt-3">
         <h1 className="font-bold text-xl p-3">What's happening</h1>
-        <div className="p-3 relative">
-          <DotsHorizontalIcon className="w-5 text-gray-400 absolute right-4" />
-          <p className="text-xs text-gray-500">Trending in US</p>
-          <h1 className="text-[15px] font-bold">China</h1>
-          <p className="text-xs text-gray-500">340K Tweets</p>
-        </div>
-        <div className="p-3 relative">
-          <DotsHorizontalIcon className="w-5 text-gray-400 absolute right-4" />
-          <p className="text-xs text-gray-500">Trending in US</p>
-          <h1 className="text-[15px] font-bold">China</h1>
-          <p className="text-xs text-gray-500">340K Tweets</p>
-        </div>
-        <div className="p-3 relative">
-          <DotsHorizontalIcon className="w-5 text-gray-400 absolute right-4" />
-          <p className="text-xs text-gray-500">Trending in US</p>
-          <h1 className="text-[15px] font-bold">China</h1>
-          <p className="text-xs text-gray-500">340K Tweets</p>
-        </div>
-        <div className="p-3 relative">
-          <DotsHorizontalIcon className="w-5 text-gray-400 absolute right-4" />
-          <p className="text-xs text-gray-500">Trending in US</p>
-          <h1 className="text-[15px] font-bold">China</h1>
-          <p className="text-xs text-gray-500">340K Tweets</p>
-        </div>
-        <div className="p-3 relative">
-          <DotsHorizontalIcon className="w-5 text-gray-400 absolute right-4" />
-          <p className="text-xs text-gray-500">Trending in US</p>
-          <h1 className="text-[15px] font-bold">China</h1>
-          <p className="text-xs text-gray-500">340K Tweets</p>
-        </div>
+        <TrendingItem
+          title="Wimbledon"
+          tweets="360K"
+          subtitle="Trending in Australia"
+        />
+        <TrendingItem
+          title="AR/VR Glasses Design"
+          tweets="623K"
+          subtitle="Apple"
+        />
+        <TrendingItem
+          title="Spider-Man Across the Spider-Verse"
+          tweets="520K"
+          subtitle="Movies"
+        />
+        <TrendingItem title="Tesla" tweets="246K" subtitle="Trending in US" />
+        <TrendingItem title="Taylor Swift" tweets="740K" subtitle="Concerts" />
       </div>
       <div className="w-[300px] h-[300px] bg-gray-700 bg-opacity-5 rounded-3xl mt-3">
         <h1 className="font-bold text-xl p-3">Who to follow</h1>
@@ -61,12 +50,10 @@ const Trending = () => {
                 <h1 className="font-bold">Elon Musk</h1>
                 <BadgeCheckIcon className="w-[18px] text-[#50b7f5]" />
               </div>
-              <h1 className="text-gray-500 mt-1 text-[12px]">@musk</h1>
+              <h1 className="text-gray-500 mt-1 text-[12px]">@elonmusk</h1>
             </div>
           </div>
-          <button className="bg-white text-black rounded-3xl w-20 text-sm font-bold h-8">
-            Follow
-          </button>
+          <FollowButton />
         </div>
         <div className="flex justify-between p-3">
           <div className="flex space-x-3 ">
@@ -82,9 +69,7 @@ const Trending = () => {
               <h1 className="text-gray-500 mt-1 text-[12px]">@kylie</h1>
             </div>
           </div>
-          <button className="bg-white text-black rounded-3xl w-20 text-sm font-bold h-8">
-            Follow
-          </button>
+          <FollowButton />
         </div>
         <div className="flex justify-between p-3">
           <div className="flex space-x-3 ">
@@ -100,9 +85,7 @@ const Trending = () => {
               <h1 className="text-gray-500 mt-1 text-[12px]">@justinong</h1>
             </div>
           </div>
-          <button className="bg-white text-black rounded-3xl w-20 text-sm font-bold h-8">
-            Follow
-          </button>
+          <FollowButton />
         </div>
       </div>
     </div>
