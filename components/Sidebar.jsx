@@ -63,7 +63,9 @@ export default function Sidebar() {
           />
           <div className="hidden xl:inline">
             <h1 className=" font-bold whitespace-nowrap">{user.name}</h1>
-            <h1 className="text-gray-500">@{user.username}</h1>
+            <h1 className="text-gray-500">
+              @{user.username || " User is Signed Out"}
+            </h1>
           </div>
           <DotsHorizontalIcon className="h-5 text-gray-700 hidden xl:inline" />
         </div>

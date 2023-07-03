@@ -77,6 +77,7 @@ const Trending = () => {
               className="w-11 h-11 object-cover rounded-full"
               src="/assets/me.jpg"
             />
+
             <div>
               <div className="flex space-x-1 ">
                 <h1 className="font-bold">Justin Ong</h1>

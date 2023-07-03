@@ -75,7 +75,7 @@ export default function CommentsPage({ tweetData }) {
             <div className="flex space-x-3 p-3  border-gray-700">
               <img
                 className="w-12 h-12 rounded-full object-cover"
-                src={user.photoUrl}
+                src={user.photoUrl || "/assets/twitter-dpp.png"}
               />
               <div className="flex justify-center items-center">
                 <input
@@ -99,7 +99,7 @@ export default function CommentsPage({ tweetData }) {
               <div className="flex space-x-3 p-3  border-gray-700">
                 <img
                   className="w-11 h-11 rounded-full object-cover"
-                  src={comment.photoUrl}
+                  src={comment.photoUrl || "/assets/twitter-dpp.png"}
                 />
                 <div>
                   <div className="text-gray-500 flex items-center space-x-2 mb-1">
