@@ -4,7 +4,7 @@ export default function FollowButton() {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleClick = () => {
-    setIsFollowing((prevIsFollowing) => !prevIsFollowing);
+    setIsFollowing((prevIsFollowing) =>!prevIsFollowing);
   };
 
   return (

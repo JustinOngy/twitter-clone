@@ -5,7 +5,6 @@ import {
   openSignupModal,
   openLoginModal,
 } from "@/redux/modalSlice";
-import TwitterIcon from "@material-ui/icons/Twitter";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -100,8 +99,8 @@ export default function SignupModal() {
         className="flex justify-center items-center">
         <div className="w-[90%] flex justify-center h-[400px] bg-white md:w-[560px] md:h-[600px] rounded-lg">
           <div className="w-[90%] mt-8 flex items-center flex-col">
-            <div className="mb-3 flex items-start	 ">
-              <TwitterIcon className=" text-[#50b7f5]" />
+            <div className="mb-3 flex items-start w-[30px]	 ">
+              <img src="/assets/twitterbird.png" />
             </div>
 
             <h1 className="text-center mt-4 font-bold text-4xl">

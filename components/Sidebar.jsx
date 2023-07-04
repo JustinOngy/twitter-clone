@@ -10,7 +10,6 @@ import {
   DotsHorizontalIcon,
 } from "@heroicons/react/outline";
 import Image from "next/image";
-import TwitterIcon from "@material-ui/icons/Twitter";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,8 +31,8 @@ export default function Sidebar() {
   return (
     <div className="h-full hidden sm:flex flex-col fixed xl:ml-24">
       <nav className="h-full relative xl:space-y-1.5">
-        <div className="flex justify-center xl:justify-start items-center py-3 xl:p-3">
-          <TwitterIcon className=" text-[#50b7f5]" />
+        <div className="flex justify-center xl:justify-start items-center py-3 xl:p-3 w-[50px]">
+          <img src="/assets/twitterbird.png" />
         </div>
         <Link href="/">
           <SidebarLink Icon={HomeIcon} text={"Home"} />
