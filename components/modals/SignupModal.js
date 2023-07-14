@@ -97,7 +97,7 @@ export default function SignupModal() {
         open={isOpen}
         onClose={() => dispatch(closeSignupModal())}
         className="flex justify-center items-center">
-        <div className="w-[90%] flex justify-center h-[400px] bg-white md:w-[560px] md:h-[600px] rounded-lg">
+        <div className="w-[90%] flex justify-center h-[550px] bg-white md:w-[560px] md:h-[600px] rounded-lg">
           <div className="w-[90%] mt-8 flex items-center flex-col">
             <div className="mb-3 flex items-start w-[30px]	 ">
               <img src="/assets/twitterbird.png" />
