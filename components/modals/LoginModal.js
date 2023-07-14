@@ -86,6 +86,9 @@ export default function LoginModal() {
                 Sign up
               </button>
             </div>
+            <h2 className="mt-12 text-gray-500">
+              test: demo@gmail.com password
+            </h2>
           </div>
         </div>
       </Modal>
